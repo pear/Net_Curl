@@ -174,6 +174,14 @@ class Net_Curl extends PEAR
 	var $cookies;
 	
 	/**
+	 * Additional HTTP headers to send to the remote site
+	 *
+	 * @var array $http_headers
+	 * @access public
+	 */
+	var $http_headers;
+	
+	/**
 	 * The fields to send in a 'POST' request
 	 *
 	 * @var array $fields
@@ -352,6 +360,7 @@ class Net_Curl extends PEAR
 			$ret = curl_setopt($ch, CURLOPT_MUTE, 0);
 		}
 
+
 		// Other stuff
 
 		$ret = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $this->follow_location);
@@ -363,20 +372,26 @@ class Net_Curl extends PEAR
 		if (isset($this->userAgent)) {
 			$ret = curl_setopt($ch, CURLOPT_USERAGENT, $this->userAgent);
 		}
-
-
 		
-		
-		// Cookies and the such
+
+		// Cookies
 		
 		if (isset($this->cookies)) {
 			foreach ($this->cookies as $name => $value) {
-				$cookie_data .= urlencode($name) . ": " . urlencode($value) . ";";
+				$cookie_data .= urlencode($name) . '=' . urlencode($value) . ';';
 			}
 		
 			$ret = curl_setopt($ch, CURLOPT_COOKIE, $cookie_data);
 		}
 		
+
+		// Other HTTP headers
+
+		if (isset($this->http_headers)) {
+			$ret = curl_setopt($ch, CURLOPT_HTTPHEADER, $this->http_headers );
+		}
+
+
 		$ret = curl_exec($ch);
 		if (!$ret) {
 			$errObj = new PEAR_Error(curl_error($ch), curl_errno($ch));
