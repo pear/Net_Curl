@@ -13,7 +13,7 @@
 // | obtain it through the world-wide-web, please send a note to          |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Author: Sterling Hughes <sterling@php.net>                           |
+// | Author: Sterling Hughes <sterling@php.net>                          |
 // +----------------------------------------------------------------------+
 //
 // $Id$
@@ -33,8 +33,23 @@ class Net_Curl extends PEAR
 	 * @access public
 	 */
 	var $url;
-	
 	/**
+	 * The Username for standard HTTP Authentication
+	 *
+	 * @var string $username
+	 * @access public
+	 */
+	var $username="";
+	
+        /**
+	 * The Password for standard HTTP Authentication
+	 *
+	 * @var string $password
+	 * @access public
+	 */
+	var $password="";	
+	
+        /**
 	 * The SSL version for the transfer
 	 *
 	 * @var integer $sslVersion
@@ -245,7 +260,6 @@ class Net_Curl extends PEAR
 	{
 		$ch  = &$this->_ch;
 		$ret = true;
-		
 		// Basic stuff
 		
 		$ret = curl_setopt($ch, CURLOPT_URL,    $this->url);
@@ -255,7 +269,13 @@ class Net_Curl extends PEAR
 		if ($this->return_transfer && !isset($this->file)) {
 			$ret = curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		}
-
+		
+		// HTTP Authentication
+		
+		if ($this->username != "") {
+			$ret = curl_setopt($ch, CURLOPT_USERPWD, "{$this->username}:{$this->password}");
+		}
+		
 		// SSL Checks
 		
 		if (isset($this->sslVersion)) {
