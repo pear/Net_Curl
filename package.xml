@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<package version="1.0">
-  <name>Net_Curl</name>
-  <summary>A nice friendly OO interface for CURL</summary>
-  <description>
-    Provides an OO interface to PHP's curl extension.
-  </description>
-  <license>PHP License</license>
-  <maintainers>
-    <maintainer>
-      <user>sterling</user>
-      <role>lead</role>
-      <name>Sterling Hughes</name>
-      <email>sterling@php.net</email>
-    </maintainer>
-  </maintainers>
-  <release>
-    <version>1.0</version>
-    <date>2002-07-20</date>
-    <notes>Initial release as PEAR package</notes>
-    <state>stable</state>
-    <filelist>
-        <dir name="Net">
-            <file name="Curl.php" role="php"/>
-        </dir>
-    </filelist>
-  </release>
-  <deps>
-    <dep type="ext" rel="has">curl</dep>
-  </deps>
+<package>
+ <name>Net_Curl</name>
+ <summary>Net_Curl provides an OO interface to PHP's cURL extension</summary>
+ <description>Provides an OO interface to PHP's curl extension</description>
+ <license>PHP</license>
+ <maintainers>
+  <maintainer>
+   <user>sterling</user>
+   <name>Sterling Hughes</name>
+   <email>sterling@php.net</email>
+   <role>lead</role>
+  </maintainer>
+ </maintainers>
+ <release>
+  <version>0.1</version>
+  <date>2002-01-26</date>
+  <notes>
+   This is the initial release of the Net_Curl package which has
+   been in php4/pear for a while.
+  </notes>
+  <state>stable</state>
+  <filelist>
+   <dir name="Net">
+    <file role="php">Curl.php</file>
+   </dir>
+  </filelist>
+ </release>
 </package>
