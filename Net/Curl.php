@@ -22,7 +22,7 @@
 //
 require_once('PEAR.php');
 
-class Net_Curl extends PEAR
+class Net_Curl 
 {
 	// {{{ Public Properties
 	
