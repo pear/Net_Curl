@@ -247,18 +247,26 @@ class Net_Curl
 	 * @param string           [$url] The URL to fetch (can be set 
 	 *                                using the $url property as well)
 	 *
+	 *                   [$userAgent] The userAgent string (can be set 
+	 *                                using the $userAgent property as well)
+	 *
 	 * @return object Net_Curl $obj   A new Net_Curl object
 	 *
 	 * @access public
+	 * @author David Costa <gurugeek@php.net>
 	 * @author Sterling Hughes <sterling@php.net>
-	 * @since  PHP 4.0.5
 	 */
-	function Net_Curl($url = "")
+	 
+	function Net_Curl($url = "", $userAgent = "")
 	{
 		if ($url) {
 			$this->url = $url;
 		}
 		
+		if ($userAgent) {
+			$this->userAgent = $userAgent;
+		}
+				
 		$ch = curl_init();
 		if (!$ch) {
         $this->error = new PEAR_Error("Couldn't initialize a new curl handle");
@@ -349,6 +357,8 @@ class Net_Curl
 			
 			$ret = curl_setopt($ch, CURLOPT_INFILE, $this->file);
 			$ret = curl_setopt($ch, CURLOPT_INFILESIZE, $this->file_size);
+			// $gurugeek$ fixed ftp upload
+			$ret = curl_setopt($ch, CURLOPT_UPLOAD, 1);
 		}
 		
 		if (isset($this->fields)) {
@@ -417,6 +427,26 @@ class Net_Curl
 		
 		return($ret);
 	}
+	
+	
+	// {{{ verbose_all()
+	
+	/**
+	 * Set a verbose output
+	 *
+	 * @access public
+	 * @author David Costa <gurugeek@php.net>
+	 */
+	 
+	function verbose_all() 
+	{
+             $this->verbose = 1;
+             $this->mute = 0;
+             $this->header = 1;
+             $this->progress = 1;
+    }
+	
+	// }}}
 	
 	// }}}
 	// {{{ close()
