@@ -357,7 +357,9 @@ class Net_Curl
 			
 			$ret = curl_setopt($ch, CURLOPT_INFILE, $this->file);
 			$ret = curl_setopt($ch, CURLOPT_INFILESIZE, $this->file_size);
-			// $gurugeek$ fixed ftp upload
+		
+		// $gurugeek$ ftp upload
+			
 			$ret = curl_setopt($ch, CURLOPT_UPLOAD, 1);
 		}
 		
