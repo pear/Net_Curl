@@ -13,7 +13,8 @@
 // | obtain it through the world-wide-web, please send a note to          |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Author: Sterling Hughes <sterling@php.net>                          |
+// | Author: David Costa     <gurugeek@php.net>                           |
+// | Author: Sterling Hughes <sterling@php.net>                           |
 // +----------------------------------------------------------------------+
 //
 // $Id$
@@ -222,7 +223,19 @@ class Net_Curl
 	 * @var resource $_ch
 	 * @access public
 	 */
+
+	// }}}
+	// {{{ Net_Curl()	   
+	
 	var $_ch;
+	
+  /**
+   * The error handle
+   *
+   * @var resource $_ch
+   * @access public
+   */
+	var $error;	
 	
 	// }}}
 	// {{{ Net_Curl()
@@ -248,7 +261,9 @@ class Net_Curl
 		
 		$ch = curl_init();
 		if (!$ch) {
-			$this = new PEAR_Error("Couldn't initialize a new curl handle");
+        $this->error = new PEAR_Error("Couldn't initialize a new curl handle");
+		if (version_compare(phpversion(), "5.0.0RC1") == -1)
+		eval("\$this = \$this->error");					
 		}
 		
 		$this->_ch = $ch;
@@ -377,6 +392,7 @@ class Net_Curl
 		// Cookies
 		
 		if (isset($this->cookies)) {
+			$cookie_data = '';
 			foreach ($this->cookies as $name => $value) {
 				$cookie_data .= urlencode($name) . '=' . urlencode($value) . ';';
 			}
@@ -395,6 +411,7 @@ class Net_Curl
 		$ret = curl_exec($ch);
 		if (!$ret) {
 			$errObj = new PEAR_Error(curl_error($ch), curl_errno($ch));
+			$this->error =& $errObj;
 			return($errObj);
 		}
 		
