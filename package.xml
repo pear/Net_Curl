@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<package version="1.0">
+  <name>Net_Curl</name>
+  <summary>A nice friendly OO interface for CURL</summary>
+  <description>
+    Provides an OO interface to PHP's curl extension.
+  </description>
+  <license>PHP License</license>
+  <maintainers>
+    <maintainer>
+      <user>sterling</user>
+      <role>lead</role>
+      <name>Sterling Hughes</name>
+      <email>sterling@php.net</email>
+    </maintainer>
+  </maintainers>
+  <release>
+    <version>1.0</version>
+    <date>2002-07-20</date>
+    <notes>Initial release as PEAR package</notes>
+    <state>stable</state>
+    <filelist>
+        <dir name="Net">
+            <file name="Curl.php" role="php"/>
+        </dir>
+    </filelist>
+  </release>
+  <deps>
+    <dep type="ext" rel="has">curl</dep>
+  </deps>
+</package>
