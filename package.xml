@@ -36,16 +36,21 @@
             - Added Net_Curl::setOption() (Bug #2887)
             - Added dependencies for PHP 4.2.0 and the cURL extension (Bug #1941)
             - Added __construct()/__destruct() for PHP 5.x compatibility and switched PHP 4.x constructor to call PHP 5.x constructor for BC
-            - Added Joe Stump as a helper
+            - Added Joe Stump as a lead
+            - Added Philippe Jausions as a lead
+            - Moved David Costa to developer
         </notes>
-        <state>beta</state>
+        <state>stable</state>
         <filelist>
             <dir name="Net">
                 <file role="php">Curl.php</file>
             </dir>
+            <dir name="examples" baseinstalldir="docs/Net_Curl">
+                <file role="doc">fetchPage.php</file>
+            </dir>
         </filelist>
         <deps>
-            <dep type="php" rel="gt" version="4.2.0" />
+            <dep type="php" rel="ge" version="4.2.0" />
             <dep type="ext" rel="has">curl</dep>
         </deps>
     </release>
@@ -67,7 +72,6 @@
                 </dir>
             </filelist>
         </release>
-
         <release>
             <version>0.2</version>
             <state>stable</state>
