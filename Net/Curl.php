@@ -518,8 +518,9 @@ class Net_Curl
             if (is_array($this->fields)) {
                 $sets = array();
                 foreach ($this->fields as $key => $val) {
-                    $sets[] = $key . '=' . $val;
+                    $sets[] = $key . '=' . urlencode($val);
                 } 
+
                 $fields = implode('&',$sets);
             } else {
                 $fields = $this->fields;
