@@ -19,10 +19,10 @@
         </maintainer>
     </maintainers>
     <release>
-        <version>1.2.3</version>
-        <date>2006-06-16</date>
+        <version>1.2.4</version>
+        <date>2006-11-23</date>
         <notes>
-            - Fixed bug #7918
+            - Fixed bug #9427 POST-FileUpload
         </notes>
         <state>stable</state>
         <filelist>
@@ -40,10 +40,30 @@
     </release>
     <changelog>
         <release>
+            <version>1.2.3</version>
+            <date>2006-06-16</date>
+            <notes>
+                - Fixed bug #7918 Cookie Handling
+            </notes>
+            <state>stable</state>
+            <filelist>
+                <dir name="Net">
+                    <file role="php">Curl.php</file>
+                </dir>
+                <dir name="examples" baseinstalldir="docs/Net_Curl">
+                    <file role="doc">fetchPage.php</file>
+                </dir>
+            </filelist>
+            <deps>
+                <dep type="php" rel="ge" version="4.2.0" />
+               <dep type="ext" rel="has">curl</dep>
+            </deps>
+        </release>
+        <release>
             <version>1.2.2</version>
             <date>2005-08-11</date>
             <notes>
-                - Fixed a bug #5156
+                - Fixed a bug #5156 URL encoding of POSTed values
             </notes>
             <state>stable</state>
             <filelist>
