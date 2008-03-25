@@ -427,7 +427,7 @@ class Net_Curl
         $ret = curl_setopt($this->_ch, CURLOPT_HEADER, $this->header);
 
         // Whether or not to return the transfer contents
-        if ($this->returnTransfer === true) {
+        if ($this->returnTransfer === true || $this->mute === true) {
             $ret = curl_setopt($this->_ch, CURLOPT_RETURNTRANSFER, true);
         }
 
@@ -562,10 +562,6 @@ class Net_Curl
 
         if ($this->verbose === true) {
             $ret = curl_setopt($this->_ch, CURLOPT_VERBOSE, true);
-        }
-
-        if ($this->mute !== true) {
-            $ret = curl_setopt($this->_ch, CURLOPT_MUTE, false);
         }
 
         // If a Location: header is passed then follow it
