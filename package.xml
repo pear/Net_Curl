@@ -3,7 +3,7 @@
     <name>Net_Curl</name>
     <summary>Net_Curl provides an OO interface to PHP's cURL extension</summary>
     <description>Provides an OO interface to PHP's curl extension</description>
-    <license>PHP</license>
+    <license>New BSD License</license>
     <maintainers>
         <maintainer>
             <user>jstump</user>
@@ -19,10 +19,12 @@
         </maintainer>
     </maintainers>
     <release>
-        <version>1.2.4</version>
-        <date>2006-11-23</date>
+        <version>1.2.5</version>
+        <date>2008-05-03</date>
         <notes>
-            - Fixed bug #9427 POST-FileUpload
+            - Removed deprecated cURL option CURLOPT_MUTE (Bug #13489) 
+            - Changed the license to the New BSD License (Bug #13831)
+            - Cleaned up code to (mostly) comply with phpcs
         </notes>
         <state>stable</state>
         <filelist>
@@ -39,6 +41,26 @@
         </deps>
     </release>
     <changelog>
+        <release>
+            <version>1.2.4</version>
+            <date>2006-11-23</date>
+            <notes>
+                - Fixed bug #9427 POST-FileUpload
+            </notes>
+            <state>stable</state>
+            <filelist>
+                <dir name="Net">
+                    <file role="php">Curl.php</file>
+                </dir>
+                <dir name="examples" baseinstalldir="docs/Net_Curl">
+                    <file role="doc">fetchPage.php</file>
+                </dir>
+            </filelist>
+            <deps>
+                <dep type="php" rel="ge" version="4.2.0" />
+                <dep type="ext" rel="has">curl</dep>
+            </deps>
+        </release>
         <release>
             <version>1.2.3</version>
             <date>2006-06-16</date>
